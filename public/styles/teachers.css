@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  --logo-color: rgb(22, 214, 156);
+  --nav-linkColor: rgb(105, 105, 105);
+}
+
+/* ===== CARDS ===== */
+.cards {
+  background-color: white;
+  border-radius: 8px;
+  min-height: 400px;
+  max-width: 900px;
+  box-shadow: 0 1px 6px -2px black;
+  margin: 75px auto 20px;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  border: 1px solid white;
+  animation: up 1500ms;
+}
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translate3d(500px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+.avatar {
+  width: 100%;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0 1px 6px -2px grey;
+}
+.info-card {
+  font-family: Roboto, sans-serif;
+  padding: 32px;
+  color: var(--nav-linkColor);
+}
+.info-card h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: rgb(66, 66, 65);
+  font-size: 14px;
+}
+.info-card .item {
+  color: #111;
+  padding: 16px 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(141, 141, 141, 0.3);
+}
+.info-card .item div:nth-child(1) {
+  font-size: 16px;
+  line-height: 24px;
+  color: #777;
+  letter-spacing: 0.7px;
+  font-weight: normal;
+}
+.info-card .item div:nth-child(2) {
+  font-weight: bold;
+  font-size: 18px;
+  color: #555;
+}
+.info-card .item:last-child {
+  border: none;
+}
+.info-card span {
+  padding: 8px 16px;
+  background-color: rgb(21, 177, 130);
+  color: white;
+  margin-right: 4px;
+  margin-top: 8px;
+  border-radius: 16px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+/* ===== INPUT ===== */

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>openClass</title>
+    <link rel="stylesheet" href="/main.css">
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <div id="main">
+      <header>
+        <nav>
+          <span>openClass</span>
+          <div class="links">
+            <a href="/">Home</a>
+            <a href="/teachers">Teachers</a>
+            <a href="/students">Students</a>
+          </div>
+        </nav>
+      </header>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
