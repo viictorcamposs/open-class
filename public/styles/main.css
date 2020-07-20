@@ -29,7 +29,7 @@ body {
     background-color: white;
   }
   header nav {
-    font-family: Galada, cursive;
+      font-family: Galada, cursive;
     font-size: 35px;
     display: flex;
     align-items: center;
@@ -70,6 +70,15 @@ body {
     bottom: -6px;
     height: 2px;
     transition: bottom 200ms ease-in-out;
+    background-color: var(--logo-color);
+  }
+  .links a.active {
+    opacity: 1;
+  }
+  .links a.active::after {
+    width: 100%;
+    bottom: -6px;
+    height: 2px;
     background-color: var(--logo-color);
   }
 /* ================== */

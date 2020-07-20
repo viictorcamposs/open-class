@@ -1,0 +1,35 @@
+{% extends 'layout.njk' %}
+{% block head %}
+  <link rel="stylesheet" href="/teachers/teachers.css">
+{% endblock %}
+{% block content %}
+  <main>
+    <div class="cards table-container">
+      <a href="/teachers/create">Novo</a>
+      <table>
+        <thead>
+          <tr>
+            <th>Professor(a)</th>
+            <th>Acompanhamento</th>
+            <th>Card</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for teacher in teachers %}
+            <tr>
+              <td>
+                <span style="background: url('{{ teacher.avatar }}') center center / cover"></span>
+                {{ teacher.name }}</td>
+              <td>
+                {% for service in teacher.classRoom %}
+                  <span>{{ service }}</span>
+                {% endfor %}
+              </td>
+              <td><a href="/teachers/{{ teacher.id }}">ver</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+{% endblock %}

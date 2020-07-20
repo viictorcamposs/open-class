@@ -1,1 +1,32 @@
 {% extends 'layout.njk' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/home.css">
+{% endblock %}
+
+{% block content%}
+
+  <main>
+    <div class="content">
+      <h1>openClass</h1>
+      <h2>Estudar ou ensinar?</h2>
+      <p>
+        Faça suas conexões <br> e comece a avançar hoje!
+      </p>
+      <div class="bodyLinks">
+        <p>Cadastre-se </p>
+        <a href="/teachers/create">Professor</a>
+        <a href="/students/create">Aluno</a>
+      </div>
+
+    </div>
+    <div>
+      <div 
+        class="image"
+        style="background: url('https://images.unsplash.com/photo-1460518451285-97b6aa326961?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80') center center / cover;">
+      </div>
+    </div>
+  </main>
+
+{% endblock%}
+

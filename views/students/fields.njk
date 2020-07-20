@@ -1,0 +1,104 @@
+<div class="item">
+  <div>Foto</div>
+  <div>
+    <input 
+      type="url" 
+      name="avatar"
+      value="{{ student.avatar }}"
+      placeholder="https://">
+  </div>
+</div>
+
+<div class="item">
+  <div>Nome</div>
+  <div>
+    <input 
+      type="text" 
+      name="name"
+      value="{{ student.name }}">  
+  </div>
+</div>
+
+<div class="item">
+  <div>E-mail</div>
+  <div>
+    <input 
+      type="email" 
+      name="email"
+      value="{{ student.email }}">  
+  </div>
+</div>
+
+<div class="item">
+  <div>Data de nascimento</div>
+  <div>
+    <input 
+    type="date" 
+    name="birth"
+    value="{{ student.birth }}">
+  </div>
+</div>
+
+<div class="item">
+  <div>Ano escolar</div>
+  <select name="schoolLevel">
+    <option value="5f"
+      {% if student.schoolLevel == "5f"%}
+        selected
+      {% endif %}>
+        5º ano do ensino fundamental 
+    </option>
+    <option value="6f"
+      {% if student.schoolLevel == "6f"%}
+        selected
+      {% endif %}>
+        6º ano do ensino fundamental 
+    </option>
+    <option value="7f"
+      {% if student.schoolLevel == "7f"%}
+        selected
+      {% endif %}>
+        7º ano do ensino fundamental 
+    </option>
+    <option value="8f"
+      {% if student.schoolLevel == "8f"%}
+        selected
+      {% endif %}>
+        8º ano do ensino fundamental 
+    </option>
+    <option value="9f"
+      {% if student.schoolLevel == "9f"%}
+        selected
+      {% endif %}>
+        9º ano do ensino fundamental 
+    </option>
+    <option value="1m"
+      {% if student.schoolLevel == "1m"%}
+        selected
+      {% endif %}>
+        1º ano do ensino médio 
+    </option>
+    <option value="2m"
+      {% if student.schoolLevel == "2m"%}
+        selected
+      {% endif %}>
+        2º ano do ensino médio 
+    </option>
+    <option value="3m"
+      {% if student.schoolLevel == "3m"%}
+        selected
+      {% endif %}>
+        3º ano do ensino médio 
+    </option>
+  </select>
+</div>
+
+<div class="item">
+  <div>Carga horária semanal</div>
+  <div>
+      <input 
+      type="number" 
+      name="grade"
+      value="{{ student.grade }}">
+  </div>
+</div>

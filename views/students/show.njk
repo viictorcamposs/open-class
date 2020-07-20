@@ -1,0 +1,62 @@
+{% extends 'layout.njk' %}
+{% block head %}
+  <link rel="stylesheet" href="/students/show.css">
+{% endblock %}
+{% block content %}
+  <main>
+    <div class="cards">
+      <section class="avatar"
+        style="background: url('{{ student.avatar }}') no-repeat center / cover;
+        margin: 50px auto;">
+      </section>
+      <section class="info-card">
+        <h3>Detalhes</h3>
+
+        <div class="item">
+          <div>Aluno(a)</div>
+          <div>{{ student.name }}</div>
+        </div>
+
+        <div class="item">
+          <div>Idade</div>
+          <div>{{ student.age }}</div>
+        </div>
+
+        <div class="item">
+          <div>Aniversário</div>
+          <div>{{ student.birth }}</div>
+        </div>
+
+        <div class="item">
+          <div>E-mail</div>
+          <div>{{ student.email }}</div>
+        </div>
+
+        <div class="item">
+          <div>Ano escolar</div>
+          <select name="schoolLevel">
+            <option value="{{ student.schoolLevel }}">
+              {{ student.schoolLevel }}
+            </option>
+          </select>
+        </div>
+
+        <div class="item">
+          <div>Carga horária semanal</div>
+          <div>
+              <input 
+              type="number" 
+              name="grade"
+              value="{{ student.grade }}">
+          </div>
+        </div>
+
+     
+
+        <a href="/students/{{ student.id }}/edit">Editar</a>
+        <a href="/students" class="back">Voltar</a>
+
+      </section>
+    </div>
+  </main>
+{% endblock %}

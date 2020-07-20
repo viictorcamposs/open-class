@@ -1,0 +1,18 @@
+{% extends 'layout.njk' %}
+{% block head %}
+  <link rel="stylesheet" href="/students/students.css">
+{% endblock %}
+{% block content %}
+  <main>
+    <form class="cards" method="POST" action="/students">
+      <section class="avatar"
+      style="background: url('https://images.unsplash.com/photo-1581726707445-75cbe4efc586?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=755&q=80') no-repeat center center / cover;">
+      </section>
+      <section class="info-card">
+        <h3>Novo aluno(a)</h3>
+        {% include 'students/fields.njk' %}
+        <button type="submit">Salvar</button>
+      </section>
+    </form>
+  </main>
+{% endblock %}

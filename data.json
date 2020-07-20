@@ -1,0 +1,54 @@
+{
+  "teachers": [
+    {
+      "id": 2,
+      "avatar": "https://instagram.frec7-1.fna.fbcdn.net/v/t51.2885-19/s150x150/79911895_585501348690714_7402570864178233344_n.jpg?_nc_ht=instagram.frec7-1.fna.fbcdn.net&_nc_ohc=JDRC1tR564kAX_9DACD&oh=53f771623cdde387d96c5821336b1d68&oe=5F3B31D3",
+      "name": "Wilson Chiarelli",
+      "birth": 346032000000,
+      "level": "bacharelado",
+      "typeOfClass": "liveInternet",
+      "classRoom": "História Geral, História da Arte, Desenho",
+      "created_at": 1594927934336
+    },
+    {
+      "id": 3,
+      "avatar": "https://instagram.frec7-1.fna.fbcdn.net/v/t51.2885-19/s150x150/13649248_1251068681600072_1492782652_a.jpg?_nc_ht=instagram.frec7-1.fna.fbcdn.net&_nc_ohc=pBBzycLOWL0AX9IX3wK&oh=d3892766a09b6b8c122ee0e7140969bb&oe=5F3BB92A",
+      "name": "Wilson Vilabela ",
+      "birth": -303177600000,
+      "level": "mestrado",
+      "typeOfClass": "live",
+      "classRoom": "Biologia, Anatomia",
+      "created_at": 1594927996758
+    },
+    {
+      "id": 4,
+      "avatar": "https://instagram.frec8-1.fna.fbcdn.net/v/t51.2885-15/e35/102928921_269505107687497_7934222026128035323_n.jpg?_nc_ht=instagram.frec8-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=TrbvJG1mKL8AX_DmNMl&oh=c372a2466818d4fc8e722c9adcc55322&oe=5F39AF57",
+      "name": "Daniel Lyra ",
+      "birth": 460598400000,
+      "level": "mestrado",
+      "typeOfClass": "liveInternet",
+      "classRoom": "Teologia, Sociologia",
+      "created_at": 1595184858399
+    }
+  ],
+  "students": [
+    {
+      "avatar": "https://instagram.frec8-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/104318212_290946588935133_9175285926213092780_n.jpg?_nc_ht=instagram.frec8-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=92RuXAIoBdEAX_XaUPM&oh=a399ee646ff026e7f64b360faac21231&oe=5F3EA373",
+      "name": "Vitoria Freitas",
+      "email": "freitass.vitoria@outlook.com",
+      "birth": 917222400000,
+      "schoolLevel": "3m",
+      "grade": "48",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "avatar": "https://instagram.frec8-1.fna.fbcdn.net/v/t51.2885-15/e35/47694623_289822445212125_2850476316444034189_n.jpg?_nc_ht=instagram.frec8-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=V-4EhkYfGuMAX_kYjOE&oh=3f959f72f5be96d95d2a57deb8b1fe4d&oe=5F402B77",
+      "name": "Victor Campos",
+      "email": "campos.viictor@gmail.com",
+      "birth": 888278400000,
+      "schoolLevel": "3m",
+      "grade": "38"
+    }
+  ]
+}

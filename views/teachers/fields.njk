@@ -1,0 +1,92 @@
+<div class="item">
+  <div>Foto</div>
+  <div>
+    <input 
+      type="url" 
+      name="avatar"
+      value="{{ teacher.avatar }}"
+      placeholder="https://">
+  </div>
+</div>
+
+<div class="item">
+  <div>Nome</div>
+  <div>
+    <input 
+      type="text" 
+      name="name"
+      value="{{ teacher.name }}"  
+      placeholder="Nome">
+  </div>
+</div>
+
+<div class="item">
+  <div>Data de nascimento</div>
+  <div>
+    <input 
+    type="date" 
+    name="birth"
+    value="{{ teacher.birth }}">
+  </div>
+</div>
+
+<div class="item">
+  <div>Grau de escolaridade</div>
+  <select name="level">
+    <option value="bacharelado"
+    {% if teacher.level == "bacharelado"%}
+      selected
+    {% endif %}>
+      Bacharelado
+    </option>
+    <option value="mestrado"
+    {% if teacher.level == "mestrado"%}
+        selected
+    {% endif %}>
+      Mestrado
+    </option>
+    <option value="doutorado"
+    {% if teacher.level == "doutorado"%}
+      selected
+    {% endif %}>
+      Doutorado
+    </option>
+  </select>
+</div>
+
+<div class="item">
+  <div>Tipo de aula</div>
+  <div>
+    <span class="input">
+      <input 
+      type="radio" 
+      name="typeOfClass"
+      value="live"
+      {% if teacher.typeOfClass == "live"%}
+        checked
+      {% endif %}>
+      Presencial
+    </span>
+    <span class="input">
+      <input 
+      type="radio"
+      value="liveInternet" 
+      name="typeOfClass"
+      {% if teacher.typeOfClass == "liveInternet"%}
+        checked
+      {% endif %}>
+      Á distância
+    </span>
+  </div>
+</div>
+
+<div class="item">
+  <div>Acompanhamento</div>
+  <div>
+    <input 
+    type="text" 
+    name="classRoom"  
+    value="{{ teacher.classRoom }}"
+    placeholder="Matérias">
+  </div>
+</div>
