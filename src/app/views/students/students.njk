@@ -19,10 +19,10 @@
           {% for student in students %}
             <tr>
               <td>
-                <span style="background: url('{{ student.avatar }}') center center / cover"></span>
+                <span style="background: url('{{ student.avatar_url }}') center center / cover"></span>
                 {{ student.name }}</td>
               <td>
-                  {{ student.schoolLevel }}
+                  {{ student.education_level }}
               </td>
               <td>
                   {{ student.email }}

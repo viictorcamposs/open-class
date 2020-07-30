@@ -18,10 +18,10 @@
           {% for teacher in teachers %}
             <tr>
               <td>
-                <span style="background: url('{{ teacher.avatar }}') center center / cover"></span>
+                <span style="background: url('{{ teacher.avatar_url }}') center center / cover"></span>
                 {{ teacher.name }}</td>
               <td>
-                {% for service in teacher.classRoom %}
+                {% for service in teacher.subjects_taught %}
                   <span>{{ service }}</span>
                 {% endfor %}
               </td>

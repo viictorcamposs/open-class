@@ -6,7 +6,7 @@
   <main>
     <div class="cards">
       <section class="avatar"
-      style="background: url('{{ teacher.avatar }}') no-repeat center / cover;
+      style="background: url('{{ teacher.avatar_url }}') no-repeat center / cover;
       margin: 50px auto;">
       </section>
       <section class="info-card">
@@ -24,24 +24,9 @@
 
         <div class="item">
           <div>Grau de escolaridade</div>
-          <select name="level">
-            <option value="bacharelado"
-            {% if teacher.level == "bacharelado"%}
-              selected
-            {% endif %}>
-              Bacharelado
-            </option>
-            <option value="mestrado"
-            {% if teacher.level == "mestrado"%}
-              selected
-            {% endif %}>
-              Mestrado
-            </option>
-            <option value="doutorado"
-            {% if teacher.level == "doutorado"%}
-              selected
-            {% endif %}>
-              Doutorado
+          <select name="education_level">
+            <option value="{{ teacher.education_level}}">
+            {{ teacher.education_level }}
             </option>
           </select>
         </div>
@@ -52,9 +37,9 @@
             <span class="input">
               <input 
                 type="radio" 
-                name="typeOfClass"
+                name="class_type"
                 value="live"
-                {% if teacher.typeOfClass == "live"%}
+                {% if teacher.class_type == "live"%}
                   checked
                 {% endif %}>
               Presencial
@@ -63,8 +48,8 @@
               <input 
                 type="radio"
                 value="liveInternet" 
-                name="typeOfClass"
-                {% if teacher.typeOfClass == "liveInternet"%}
+                name="class_type"
+                {% if teacher.class_type == "liveInternet"%}
                   checked
                 {% endif %}>
               Á distância
@@ -75,7 +60,7 @@
         <div class="item">
           <div>Acompanhamento</div>
           <div>
-            {% for class in teacher.classRoom %}
+            {% for class in teacher.subjects_taught %}
               <span>{{ class }}</span>
             {% endfor %}
           </div>

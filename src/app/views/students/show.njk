@@ -6,7 +6,7 @@
   <main>
     <div class="cards">
       <section class="avatar"
-        style="background: url('{{ student.avatar }}') no-repeat center / cover;
+        style="background: url('{{ student.avatar_url }}') no-repeat center / cover;
         margin: 50px auto;">
       </section>
       <section class="info-card">
@@ -24,7 +24,7 @@
 
         <div class="item">
           <div>Aniversário</div>
-          <div>{{ student.birth }}</div>
+          <div>{{ student.birth_date }}</div>
         </div>
 
         <div class="item">
@@ -34,9 +34,9 @@
 
         <div class="item">
           <div>Ano escolar</div>
-          <select name="schoolLevel">
-            <option value="{{ student.schoolLevel }}">
-              {{ student.schoolLevel }}
+          <select name="education_level">
+            <option value="{{ student.education_level }}">
+              {{ student.education_level }}
             </option>
           </select>
         </div>

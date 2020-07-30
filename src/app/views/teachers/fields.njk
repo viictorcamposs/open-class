@@ -3,8 +3,8 @@
   <div>
     <input 
       type="url" 
-      name="avatar"
-      value="{{ teacher.avatar }}"
+      name="avatar_url"
+      value="{{ teacher.avatar_url }}"
       placeholder="https://">
   </div>
 </div>
@@ -25,30 +25,30 @@
   <div>
     <input 
     type="date" 
-    name="birth"
-    value="{{ teacher.birth }}">
+    name="birth_date"
+    value="{{ teacher.birth_date }}">
   </div>
 </div>
 
 <div class="item">
   <div>Grau de escolaridade</div>
-  <select name="level">
-    <option value="bacharelado"
-    {% if teacher.level == "bacharelado"%}
-      selected
-    {% endif %}>
+  <select name="education_level">
+    <option value="Bacharelado"
+      {% if teacher.education_level == "Bacharelado"%}
+        selected
+      {% endif %}>
       Bacharelado
     </option>
-    <option value="mestrado"
-    {% if teacher.level == "mestrado"%}
-        selected
-    {% endif %}>
+    <option value="Mestrado"
+      {% if teacher.education_level == "Mestrado"%}
+          selected
+      {% endif %}>
       Mestrado
     </option>
-    <option value="doutorado"
-    {% if teacher.level == "doutorado"%}
-      selected
-    {% endif %}>
+    <option value="Doutorado"
+      {% if teacher.education_level == "Doutorado"%}
+        selected
+      {% endif %}>
       Doutorado
     </option>
   </select>
@@ -60,9 +60,9 @@
     <span class="input">
       <input 
       type="radio" 
-      name="typeOfClass"
+      name="class_type"
       value="live"
-      {% if teacher.typeOfClass == "live"%}
+      {% if teacher.class_type == "live"%}
         checked
       {% endif %}>
       Presencial
@@ -71,8 +71,8 @@
       <input 
       type="radio"
       value="liveInternet" 
-      name="typeOfClass"
-      {% if teacher.typeOfClass == "liveInternet"%}
+      name="class_type"
+      {% if teacher.class_type == "liveInternet"%}
         checked
       {% endif %}>
       Á distância
@@ -85,8 +85,8 @@
   <div>
     <input 
     type="text" 
-    name="classRoom"  
-    value="{{ teacher.classRoom }}"
+    name="subjects_taught"  
+    value="{{ teacher.subjects_taught }}"
     placeholder="Matérias">
   </div>
 </div>
