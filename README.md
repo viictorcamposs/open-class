@@ -24,7 +24,7 @@
 </p>
 <h2> <img src="https://i.dlpng.com/static/png/6577858_preview.png" width="50px" align="center"/>
 Como utilizar:</h2>
-<p> Você precisa instalar <a href="https://nodejs.org/en/">Node.js</a>, <a href="https://www.postgresql.org/">PostgreSQL</a> and <a href="https://www.electronjs.org/apps/postbird">Postbird</a>. </p>
+<p> Você precisa instalar <a href="https://nodejs.org/en/">Node.js</a>, <a href="https://www.postgresql.org/">PostgreSQL</a> e <a href="https://www.electronjs.org/apps/postbird">Postbird</a>. </p>
    
 <h3> Passos <h3>
 <h4> 1. Clonar repositório <h4>
