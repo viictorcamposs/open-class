@@ -48,7 +48,7 @@ $ npm start
 <h2><img src="https://static.thenounproject.com/png/25759-200.png"width="50px" height="50px" align="center"/> Resultado</h2>
 <p>Nota: Gif pode alterar imagens e cores</p>
 <h3> openClass </h3>
-<img src="public/readme/open-class.gif"/>
+<img src="public/readme/openclass.gif"/>
 
   
 
