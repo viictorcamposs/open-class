@@ -1,19 +1,18 @@
 const db = require ( '../../config/db' )
-const { date } = require ('../../lib/utils')
+const { date, arrayIteration } = require ('../../lib/utils')
 
 module.exports = {
     all ( callback ) {
-        db.query ( `SELECT * FROM teachers ORDER BY name ASC`, function ( err, results ) {
+        db.query ( `
+            SELECT teachers.*,
+            count ( students ) AS total_students 
+            FROM teachers
+            LEFT JOIN students ON ( students.teacher_id = teachers.id)
+            GROUP BY teachers.id
+            ORDER BY total_students DESC`, function ( err, results ) {
             if ( err ) throw `Database error! ${ err }`
-            const newArrayTeachers = []
-            for ( teacher of results.rows ) {
-                const teachers = {
-                    ...teacher,
-                    subjects_taught: teacher.subjects_taught.split (',')
-                }
-                newArrayTeachers.push ( teachers )
-            }
-            callback ( newArrayTeachers )
+
+            callback ( arrayIteration ( results ) )
         })
     },
     create ( data, callback ) {
@@ -44,10 +43,28 @@ module.exports = {
         })
     },
     find ( id, callback ) {
-        db.query ( `SELECT * FROM teachers WHERE id = $1`, [id], function ( err, results ) {
+        db.query ( `
+            SELECT *
+            FROM teachers 
+            WHERE id = $1`, [id], function ( err, results ) {
             if ( err ) throw `Database ${ err }`
             callback ( results.rows[0] )          
         })
+    },
+    findBy ( filter, callback ) {
+        db.query ( `
+            SELECT teachers.*,
+            count ( students ) AS total_students
+            FROM teachers 
+            LEFT JOIN students ON ( students.teacher_id = teachers.id )
+            WHERE teachers.name ILIKE '%${ filter }%'
+            OR teachers.subjects_taught ILIKE '%${ filter }%'
+            GROUP BY teachers.id
+            ORDER BY total_students DESC`, function ( err, results ) {
+                if ( err ) return `Database ${ err }`
+
+                callback ( arrayIteration ( results ) )
+            })
     },
     update ( data, callback ) {
         const query = `
@@ -82,5 +99,40 @@ module.exports = {
                 if ( err ) throw `Database ${ err }`
                 callback () 
             })
+    },
+    paginate ( params ) {
+        const { filter, limit, offset, callback } = params
+
+        let query = "",
+            filterQuery = "",
+            totalQuery = `(
+                SELECT count (*) 
+                FROM teachers 
+            ) AS total`
+
+        if ( filter ) {
+            filterQuery = `
+                WHERE teachers.name ILIKE '%${ filter }%'
+                OR teachers.subjects_taught ILIKE '%${ filter }%'
+            `
+            totalQuery = `(
+                SELECT count (*)
+                FROM teachers
+                ${ filterQuery }
+            ) AS total`
+        }
+
+        query = `
+            SELECT teachers.*, ${ totalQuery },
+            count ( students ) AS total_students 
+            FROM teachers 
+            LEFT JOIN students ON ( teachers.id = students.teacher_id )
+            ${ filterQuery }
+            GROUP BY teachers.id LIMIT $1 OFFSET $2 
+        `
+        db.query ( query, [ limit, offset ], ( err, results ) => {
+            if ( err ) throw `Database Error! ${ err }`
+            callback ( arrayIteration ( results )) 
+        })
     }
 }

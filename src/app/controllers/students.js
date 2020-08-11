@@ -3,12 +3,32 @@ const Student = require ('../models/Student')
 
 module.exports = {
 	index ( req, res ) {
-		Student.all ( function ( students ) {
-			return res.render ('students/students', { students })
-		})
+		let { filter, page, limit } = req.query
+
+		page = page || 1
+		limit = limit || 2
+		let offset = limit * ( page - 1 )
+		
+		const params = {
+			filter,
+			page,
+			limit,
+			offset,
+			callback ( students ) {
+				const pagination = {
+					total: Math.ceil ( students[0].total / limit ),
+					page
+				}
+				return res.render ( 'students/students', { students, filter, pagination })
+			}
+		}
+
+		Student.paginate ( params )
 	},
 	create ( req, res ) {
-		return res.render ('students/create')
+		Student.teachersSelectOptions ( function ( options ) {
+			return res.render ('students/create', { teachersOptions: options })
+		})
 	},
 	post ( req, res ) {
 		const keys = Object.keys (req.body)
@@ -16,7 +36,7 @@ module.exports = {
 			if ( req.body[key] == "") return res.send ("Preencha todos os campos")
 		}
 		Student.create ( req.body, function ( student ) {
-			return res.redirect (`/students`)
+			return res.redirect (`/students/${ student.id }`)
 		})
 	},
 	show ( req, res ) {
@@ -32,7 +52,9 @@ module.exports = {
 		Student.find ( req.params.id, function ( student ) {
 			if ( !student ) return res.send ( 'Student not found!' )
 			student.birth_date = date ( student.birth_date ).iso 
-			return res.render ( 'students/edit', { student })
+			Student.teachersSelectOptions ( function ( options ) {
+				return res.render ( 'students/edit', { student, teachersOptions: options })
+			})
 		})
 	},
 	put ( req, res ) {

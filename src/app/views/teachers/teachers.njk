@@ -1,35 +1,54 @@
 {% extends 'layout.njk' %}
 {% block head %}
-  <link rel="stylesheet" href="/teachers/teachers.css">
+	<link rel="stylesheet" href="/teachers/teachers.css">
 {% endblock %}
 {% block content %}
-  <main>
-    <div class="cards table-container">
-      <a href="/teachers/create">Novo</a>
-      <table>
-        <thead>
-          <tr>
-            <th>Professor(a)</th>
-            <th>Acompanhamento</th>
-            <th>Card</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for teacher in teachers %}
-            <tr>
-              <td>
-                <span style="background: url('{{ teacher.avatar_url }}') center center / cover"></span>
-                {{ teacher.name }}</td>
-              <td>
-                {% for service in teacher.subjects_taught %}
-                  <span>{{ service }}</span>
-                {% endfor %}
-              </td>
-              <td><a href="/teachers/{{ teacher.id }}">ver</a></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </main>
+<main>
+	<div class="cards table-container">
+		<div class="header">
+			<a href="/teachers/create">Novo</a>
+			<form action="/teachers" method="GET">
+				<input 
+					type="text"
+					class="filter"
+					name="filter"
+					placeholder="Pesquisar por professor ou aula..."
+					value="{{ filter }}">
+				<button type="submit">Pesquisar</button>
+			</form>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Professor(a)</th>
+					<th>Acompanhamento</th>
+					<th>Alunos</th>
+					<th>Card</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for teacher in teachers %}
+					<tr>
+						<td>
+							<span style="background: url({{ teacher.avatar_url }}) center center / cover"></span>
+							{{ teacher.name }}
+						</td>
+						<td>
+							{% for service in teacher.subjects_taught %}
+								<span>{{ service }}</span>
+							{% endfor %}
+						</td>
+						<td><span>{{ teacher.total_students }}</span></td>
+						<td><a href="/teachers/{{ teacher.id }}">ver</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="pagination"
+			data-page= {{ pagination.page }}
+			data-total={{ pagination.total }}
+			data-filter= {{ filter }}>
+		</div>
+	</div>
+</main>
 {% endblock %}

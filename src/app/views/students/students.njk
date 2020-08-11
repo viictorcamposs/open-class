@@ -1,37 +1,52 @@
 {% extends 'layout.njk' %}
 {% block head %}
-  <link rel="stylesheet" href="/students/students.css">
+    <link rel="stylesheet" href="/students/students.css">
 {% endblock %}
 {% block content %}
-  <main>
-    <div class="cards table-container">
-      <a href="/students/create">Novo</a>
-      <table>
-        <thead>
-          <tr>
-            <th>Aluno(a)</th>
-            <th>Ano escolar</th>
-            <th>E-mail</th>
-            <th>Card</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for student in students %}
-            <tr>
-              <td>
-                <span style="background: url('{{ student.avatar_url }}') center center / cover"></span>
-                {{ student.name }}</td>
-              <td>
-                  {{ student.education_level }}
-              </td>
-              <td>
-                  {{ student.email }}
-              </td>
-              <td><a href="/students/{{ student.id }}">ver</a></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </main>
+    <main>
+        <div class="cards table-container">
+            <div class="header">
+                <a href="/students/create">Novo</a>
+                <form action="/students" method="GET">
+                    <input 
+                    type="text"
+                    class="filter"
+                    name="filter"
+                    placeholder="Pesquisar aluno..."
+                    value="{{ filter }}">
+                    <button type="submit">Pesquisar</button>
+                </form>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aluno(a)</th>
+                        <th>Ano escolar</th>
+                        <th>E-mail</th>
+                        <th>Card</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                        <tr>
+                            <td>
+                                <span style="background: url('{{ student.avatar_url }}') center center / cover"></span>
+                                {{ student.name }}
+                            </td>
+                            <td>{{ student.education_level }}</td>
+                            <td>{{ student.email }}</td>
+                            <td>
+                                <a href="/students/{{ student.id }}">ver</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination"
+			data-page= {{ pagination.page }}
+			data-total={{ pagination.total }}
+			data-filter= {{ filter }}>
+		</div>
+        </div>
+    </main>
 {% endblock %}

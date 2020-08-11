@@ -1,9 +1,9 @@
 const express = require ('express') // Require --> requisição para chamar dependência, arquivo, etc
 const nunjucks = require ('nunjucks')
 const routes = require ('./routes')
+const server = express ()
 const methodOverride = require ('method-override')
 
-const server = express ()
 
 server.use (express.urlencoded ({ extended:true })) // linha responsável por habilitar o uso do req.body
 server.use (express.static ('public/styles'))

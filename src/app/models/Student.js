@@ -23,8 +23,9 @@ module.exports = {
                 email,
                 education_level,
                 birth_date,
-                grade
-            ) VALUES ($1, $2, $3, $4, $5, $6) 
+                grade,
+                teacher_id
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7) 
             RETURNING id
         `
         const values = [
@@ -33,7 +34,8 @@ module.exports = {
             data.email,
             data.education_level,
             date (data.birth_date).iso,
-            data.grade
+            data.grade,
+            data.teacher
         ]
         db.query ( query, values, function ( err, results ) {
             if ( err ) throw `Database error! ${ err }`
@@ -41,9 +43,12 @@ module.exports = {
         })
     },
     find ( id, callback ) {
-        db.query ( `SELECT * FROM students WHERE id = $1`, [id], function ( err, results ) {
+        db.query ( `
+            SELECT students.*, teachers.name AS teacher_name 
+            FROM students
+            LEFT JOIN teachers ON ( students.teacher_id = teachers.id ) 
+            WHERE students.id = $1`, [id], function ( err, results ) {
             if ( err ) throw `Database ${ err }`
-
             callback ( results.rows[0] )          
         })
     },
@@ -55,8 +60,9 @@ module.exports = {
                 email = ( $3 ),
                 education_level = ( $4 ),
                 birth_date = ( $5 ),
-                grade = ( $6 )
-            WHERE id = $7
+                grade = ( $6 ),
+                teacher_id = ( $7 )
+            WHERE id = $8
         `
         const values = [
             data.name,
@@ -65,6 +71,7 @@ module.exports = {
             data.education_level,
             data.birth_date,
             data.grade,
+            data.teacher,
             data.id
         ]
         db.query ( query, values, function ( err, results ) {
@@ -80,5 +87,44 @@ module.exports = {
                 if ( err ) throw `Database ${ err }`
                 callback () 
             })
-    }
+    },
+    teachersSelectOptions ( callback ) {
+        db.query ( `SELECT name, id FROM teachers`, function ( err, results ) {
+            if ( err ) throw `Database ${ err }`
+            callback ( results.rows )
+        })
+    },
+    paginate ( params ) {
+        const { filter, limit, offset, callback } = params
+
+        let query = "",
+            filterQuery = "",
+            totalQuery = `(
+                SELECT count (*) 
+                FROM students 
+            ) AS total`
+
+        if ( filter ) {
+            filterQuery = `
+                WHERE students.name ILIKE '%${ filter }%'
+                OR students.email ILIKE '%${ filter }%'
+            `
+            totalQuery = `(
+                SELECT count (*)
+                FROM students
+                ${ filterQuery }
+            ) AS total`
+        }
+
+        query = `
+            SELECT students.*, ${ totalQuery }
+            FROM students 
+            ${ filterQuery }
+            LIMIT $1 OFFSET $2 
+        `
+        db.query ( query, [ limit, offset ], ( err, results ) => {
+            if ( err ) throw `Database Error! ${ err }`
+            callback ( results.rows ) 
+        })
+    }    
 }
